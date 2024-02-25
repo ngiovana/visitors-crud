@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const AddVisitorContainer = styled.div`
   height: 28rem;
-  width: 35rem;
+  width: 32rem;
   margin: 5rem auto;
   padding: 2.5rem;
 

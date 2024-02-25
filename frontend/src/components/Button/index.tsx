@@ -28,7 +28,7 @@ export function Button({ isConfirm, isCancel, isImg }: ButtonProps) {
         </>
       ) : (
         <>
-          <AddButtonIcon fontSize="smaller" />
+          <AddButtonIcon fontSize="small" />
           Adicionar
         </>
       )

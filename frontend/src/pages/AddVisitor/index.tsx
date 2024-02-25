@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Button } from '../../components/Button'
 import { Header } from '../../components/Header'
 import { Input } from '../../components/Input'
@@ -7,7 +6,6 @@ import { AddVisitorContainer, AddVisitorForm, ButtonContainer, FormTitle, ImgCon
 import { Avatar } from '@mui/material'
 
 export function AddVisitor() {
- // adicionar width do botão
   return(
     <AddVisitorContainer>
       <Header title="Visitante"/>

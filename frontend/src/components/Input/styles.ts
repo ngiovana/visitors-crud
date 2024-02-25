@@ -6,7 +6,7 @@ interface InputContainerProps {
 
 export const InputContainer = styled.div<InputContainerProps>`
   height: 2rem;
-  width: ${({ isCPF }) => isCPF ? "15rem" : "24rem"};
+  width: ${({ isCPF }) => isCPF ? "15rem" : "20rem"};
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5rem;
