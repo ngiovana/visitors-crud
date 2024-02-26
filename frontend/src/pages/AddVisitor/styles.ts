@@ -42,7 +42,7 @@ export const ImgContainer = styled.div`
 `
 
 export const AddVisitorForm = styled.form`
-  height: 15rem;
+  height: 20rem;
   margin-top: 0.5rem;
 
   display: flex;

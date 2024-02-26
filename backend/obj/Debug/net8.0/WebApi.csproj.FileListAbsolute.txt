@@ -1,0 +1,7 @@
+C:\Users\Acer\Documents\dev\bma-crud\backend\obj\Debug\net8.0\WebApi.csproj.AssemblyReference.cache
+C:\Users\Acer\Documents\dev\bma-crud\backend\obj\Debug\net8.0\WebApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Acer\Documents\dev\bma-crud\backend\obj\Debug\net8.0\WebApi.AssemblyInfoInputs.cache
+C:\Users\Acer\Documents\dev\bma-crud\backend\obj\Debug\net8.0\WebApi.AssemblyInfo.cs
+C:\Users\Acer\Documents\dev\bma-crud\backend\obj\Debug\net8.0\WebApi.csproj.CoreCompileInputs.cache
+C:\Users\Acer\Documents\dev\bma-crud\backend\obj\Debug\net8.0\WebApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Acer\Documents\dev\bma-crud\backend\obj\Debug\net8.0\WebApi.sourcelink.json
