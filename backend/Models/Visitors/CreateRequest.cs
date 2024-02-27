@@ -10,10 +10,10 @@ public class CreateRequest
   public string Name { get; set; }
 
   [Required]
-  public int Phone { get; set; }
+  public string Phone { get; set; }
 
   [Required]
-  public int Cpf { get; set; }
+  public string Cpf { get; set; }
 
   [Required]
   [EmailAddress]

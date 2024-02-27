@@ -33,6 +33,9 @@ namespace WebApi.Services
       if (_context.Visitors.Any(x => x.Email == model.Email))
         throw new AppException("O E-mail '" + model.Email + "' já está sendo utilizado.");
 
+      if (_context.Visitors.Any(x => x.Cpf == model.Cpf))
+        throw new AppException("O CPF '" + model.Cpf + "' já foi cadastrado.");
+
       if (string.IsNullOrEmpty(model.Password))
         model.Password = "12345678";
 
@@ -49,6 +52,9 @@ namespace WebApi.Services
       if (model.Email != visitor.Email && _context.Visitors.Any(x => x.Email == model.Email))
         throw new AppException("O E-mail '" + model.Email + "' já está sendo utilizado.");
 
+      if (_context.Visitors.Any(x => x.Cpf == model.Cpf))
+        throw new AppException("O CPF '" + model.Cpf + "' já foi cadastrado.");
+        
       _mapper.Map(model, visitor);
       _context.Visitors.Update(visitor);
       _context.SaveChanges();

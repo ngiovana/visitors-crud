@@ -6,8 +6,8 @@ using WebApi.Entities;
 public class UpdateRequest
 {
   public string Name { get; set; }
-  public int Phone { get; set; }
-  public int Cpf { get; set; }
+  public string Phone { get; set; }
+  public string Cpf { get; set; }
   public string Password { get; set; }
 
   [EmailAddress]

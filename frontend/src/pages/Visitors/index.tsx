@@ -1,14 +1,40 @@
 import { Button } from '../../components/Button'
 import { HeaderTitle, VisitorsContainer, VisitorsHeaderContainer, VisitorsTable, VisitorsTableRow, VisitorsTableHeaderItem, VisitorsTableDataItem, VisitorsTableDataEmail, EditVisitorButton, DeleteVisitorButton, ButtonsContainer, EditVisitorIcon } from './styles'
 
+import { getVisitors } from '../../services/visitorService'
+import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+
 export function Visitors() {
+  const [visitors, setVisitors] = useState([{}])
+  
+  useEffect( () => { 
+    async function fetchData() {
+      try {
+        const data = await getVisitors()
+        setVisitors(data)
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchData();
+  }, []);
+
+  const visitorsCount = visitors.length
+
+  const handleClick = () => {
+    console.log("click")
+  }
+
   return (
     <VisitorsContainer>
       <VisitorsHeaderContainer>
         <HeaderTitle>
           Visitantes
         </HeaderTitle>
-        <Button isCancel={false} isConfirm={false} isImg={false}/>
+        <Link to="/add" style={{ textDecoration: 'none' }}>
+          <Button onClick={() => handleClick()} isCancel={false} isConfirm={false} isImg={false}/>
+        </Link>
       </VisitorsHeaderContainer>
 
       <VisitorsTable>
@@ -20,44 +46,26 @@ export function Visitors() {
           </VisitorsTableRow>
         </thead>
         <tbody>
-          <VisitorsTableRow>
-            <VisitorsTableDataItem>Mário Quintana</VisitorsTableDataItem>
-            <VisitorsTableDataItem>(47) 9999-9999</VisitorsTableDataItem>
-            <VisitorsTableDataEmail>mario_quintana@bmasistemas.com.br</VisitorsTableDataEmail>
+          {visitorsCount > 0 ? (
+            <>
+              {visitors.map((visitor, index) => (
+                <VisitorsTableRow key={index}>
+                  <VisitorsTableDataItem>{visitor.name}</VisitorsTableDataItem>
+                  <VisitorsTableDataItem>{visitor.phone}</VisitorsTableDataItem>
+                  <VisitorsTableDataEmail>{visitor.email}</VisitorsTableDataEmail>
 
-            <ButtonsContainer>
-              <EditVisitorButton>
-                <EditVisitorIcon />
-              </EditVisitorButton>
-              <DeleteVisitorButton />
-            </ButtonsContainer>
-          </VisitorsTableRow>
-
-          <VisitorsTableRow>
-            <VisitorsTableDataItem>Mário Quintana</VisitorsTableDataItem>
-            <VisitorsTableDataItem>(47) 9999-9999</VisitorsTableDataItem>
-            <VisitorsTableDataEmail>mario_quintana@bmasistemas.com.br</VisitorsTableDataEmail>
-
-            <ButtonsContainer>
-              <EditVisitorButton>
-                <EditVisitorIcon />
-              </EditVisitorButton>
-              <DeleteVisitorButton />
-            </ButtonsContainer>
-          </VisitorsTableRow>
-
-          <VisitorsTableRow>
-            <VisitorsTableDataItem>Mário Quintana</VisitorsTableDataItem>
-            <VisitorsTableDataItem>(47) 9999-9999</VisitorsTableDataItem>
-            <VisitorsTableDataEmail>mario_quintana@bmasistemas.com.br</VisitorsTableDataEmail>
-
-            <ButtonsContainer>
-              <EditVisitorButton>
-                <EditVisitorIcon />
-              </EditVisitorButton>
-              <DeleteVisitorButton />
-            </ButtonsContainer>
-          </VisitorsTableRow>
+                  <ButtonsContainer>
+                    <Link style={{ textDecoration: 'none' }} to={`/add/${visitor.id}`}>
+                      <EditVisitorButton>
+                        <EditVisitorIcon />
+                      </EditVisitorButton>
+                    </Link>
+                    <DeleteVisitorButton />
+                  </ButtonsContainer>
+                </VisitorsTableRow>
+              ))}
+            </>
+          ) : (<></>)}
         </tbody>
       </VisitorsTable>
     </VisitorsContainer>

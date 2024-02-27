@@ -8,7 +8,8 @@ export function Router() {
     <Routes>
       <Route path="/" element={<Logon />} />
       <Route path="/visitors" element={<Visitors />} />
-      <Route path="/add" element={<AddVisitor />} />
+      <Route path="/add" element={<AddVisitor edit={false} />} />
+      <Route path="/add/:id" element={<AddVisitor edit={true} />} />
     </Routes>
   )
 }
