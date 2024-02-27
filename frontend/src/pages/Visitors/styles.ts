@@ -83,7 +83,12 @@ export const EditVisitorIcon = styled(BorderColorIcon)`
   color: ${(props) => props.theme.white};
 `
 
-export const DeleteVisitorButton = styled(DeleteIcon)`
+export const DeleteVisitorButton = styled.button`
+  border: none;
+  background-color: ${(props) => props.theme.white};
+`
+
+export const DeleteButtonIcon = styled(DeleteIcon)`
   color: ${(props) => props.theme['gray-500']};
   cursor: pointer;
 `

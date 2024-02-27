@@ -24,7 +24,7 @@ export function Logon() {
     console.log(emailValue)
     console.log(passwordValue)
     if (emailValue.trim() !== '' && passwordValue.trim() !== '') {
-      // verificar se o email existe, se a senha bate no banco de dados para então redirecionar
+      // verificar no banco
       if (passwordValue == "12345678") {
         navigate('/visitors')
       }

@@ -3,35 +3,59 @@ import { Header } from '../../components/Header'
 import { Input } from '../../components/Input'
 import { AddVisitorContainer, AddVisitorForm, ButtonContainer, FormTitle, ImgContainer, InputContainer } from './styles'
 
-import { createVisitor, updateVisitor } from '../../services/visitorService'
+import { createVisitor, updateVisitor, getVisitorById } from '../../services/visitorService'
 
 import { Avatar } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
 interface AddVisitorProps {
   edit: boolean;
 }
 
 export function AddVisitor({ edit }: AddVisitorProps) {
+  const { id } = useParams()
 
+  const [visitor, setVisitor] = useState({})
   const [nameValue, setNameValue] = useState('')
   const [phoneValue, setPhoneValue] = useState('')
   const [cpfValue, setCpfValue] = useState('')
   const [emailValue, setEmailValue] = useState('')
 
-  const [actualId, setActualId] = useState(0)
+  if (id !== '' && id !== undefined) {
+    useEffect( () => { 
+      async function fetchData() {
+        try {
+          const data = await getVisitorById(Number(id))
+          setVisitor(data)
+          console.log("entrou na função")
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      fetchData() 
+      setNameValue(visitor.name)
+      setPhoneValue(visitor.phone)
+      setCpfValue(visitor.cpf)
+      setEmailValue(visitor.email)
+    }, []);
+  }
+
+  const navigate = useNavigate()
 
   const handleConfirm = () => {
-    if (nameValue.trim() !== "" && phoneValue.trim() !== "" && cpfValue.trim() !== "" && emailValue.trim() !== "" && actualId === 0) {
+    if (nameValue.trim() !== "" && phoneValue.trim() !== "" && cpfValue.trim() !== "" && emailValue.trim() !== "" && !edit) {
       createVisitor({name: nameValue, phone: phoneValue, cpf: cpfValue, email: emailValue})
-    } else if (nameValue.trim() !== "" && phoneValue.trim() !== "" && cpfValue.trim() !== "" && emailValue.trim() !== "") {
-       updateVisitor({name: nameValue, phone: phoneValue, cpf: cpfValue, email: emailValue}, actualId)
+    } else if (nameValue !== "" && phoneValue !== "" && cpfValue !== "" && emailValue !== "") {
+       updateVisitor({name: nameValue, phone: phoneValue, cpf: cpfValue, email: emailValue}, visitor.id)
     }
 
     setNameValue('')
     setPhoneValue('')
     setCpfValue('')
     setEmailValue('')
+
+    navigate('/visitors')
   }
 
   const handleCancel = () => {
@@ -40,7 +64,7 @@ export function AddVisitor({ edit }: AddVisitorProps) {
     setCpfValue('')
     setEmailValue('')
 
-    //redirecionar pra lista de visitantes
+    navigate('/visitors')
   }
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,12 +1,15 @@
 import { Button } from '../../components/Button'
-import { HeaderTitle, VisitorsContainer, VisitorsHeaderContainer, VisitorsTable, VisitorsTableRow, VisitorsTableHeaderItem, VisitorsTableDataItem, VisitorsTableDataEmail, EditVisitorButton, DeleteVisitorButton, ButtonsContainer, EditVisitorIcon } from './styles'
+import { HeaderTitle, VisitorsContainer, VisitorsHeaderContainer, VisitorsTable, VisitorsTableRow, VisitorsTableHeaderItem, VisitorsTableDataItem, VisitorsTableDataEmail, EditVisitorButton, DeleteVisitorButton, ButtonsContainer, EditVisitorIcon, DeleteButtonIcon } from './styles'
 
-import { getVisitors } from '../../services/visitorService'
+import { getVisitors, deleteVisitor } from '../../services/visitorService'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export function Visitors() {
   const [visitors, setVisitors] = useState([{}])
+
+  const navigate = useNavigate()
   
   useEffect( () => { 
     async function fetchData() {
@@ -22,8 +25,10 @@ export function Visitors() {
 
   const visitorsCount = visitors.length
 
-  const handleClick = () => {
-    console.log("click")
+  const handleClick = () => {}
+
+  const handleDelete = async(visitorId) => {
+    await deleteVisitor(visitorId).then(navigate(0))
   }
 
   return (
@@ -60,7 +65,9 @@ export function Visitors() {
                         <EditVisitorIcon />
                       </EditVisitorButton>
                     </Link>
-                    <DeleteVisitorButton />
+                    <DeleteVisitorButton onClick={() => handleDelete(visitor.id)} >
+                      <DeleteButtonIcon />
+                    </DeleteVisitorButton>
                   </ButtonsContainer>
                 </VisitorsTableRow>
               ))}

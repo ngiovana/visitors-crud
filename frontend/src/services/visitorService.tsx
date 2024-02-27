@@ -27,7 +27,7 @@ export const getVisitors = async() => {
 }
 
 export const createVisitor = (visitor: VisitorProps) => {
-  return axios.post(API_BASE_URL, visitor);
+  return axios.post(API_BASE_URL, visitor)
 }
 
 export const getVisitorById = async(visitorId: number) => {
@@ -35,46 +35,10 @@ export const getVisitorById = async(visitorId: number) => {
 }
 
 export const updateVisitor = (visitor: VisitorProps, visitorId: number) => {
-  return axios.put(API_BASE_URL + '/' + visitorId, visitor);
+  return axios.put(API_BASE_URL + '/' + visitorId, visitor)
 }
 
 export const deleteVisitor = (visitorId: number) => {
-  return axios.delete(API_BASE_URL + '/' + visitorId);
+  return axios.delete(API_BASE_URL + '/' + visitorId)
 }
 
-
-// export const VisitorProvider: React.FC<VisitorProviderProps> = ({ children }) => {
-//   const getVisitors = () => {
-//     return axios.get(API_BASE_URL);
-//   }
-
-//   const createVisitor = (visitor: VisitorProps) => {
-//     return axios.post(API_BASE_URL, visitor);
-//   }
-
-//   const getVisitorById = (visitorId: number) => {
-//     return axios.get(API_BASE_URL + '/' + visitorId);
-//   }
-
-//   const updateVisitor = (visitor: VisitorProps, visitorId: number) => {
-//     return axios.put(API_BASE_URL + '/' + visitorId, visitor);
-//   }
-
-//   const deleteVisitor = (visitorId: number) => {
-//     return axios.delete(API_BASE_URL + '/' + visitorId);
-//   }
-
-//   const value = {
-//     getVisitors,
-//     createVisitor,
-//     getVisitorById,
-//     updateVisitor,
-//     deleteVisitor
-//   }
-
-//   return (
-//     <VisitorContext.Provider value={value}>{children}</VisitorContext.Provider>
-//   )
-// }
-
-// export const useVisitorService = () => useVisitorContext()

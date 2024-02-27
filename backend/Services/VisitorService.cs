@@ -48,12 +48,6 @@ namespace WebApi.Services
     public void Update(int id, UpdateRequest model)
     {
       var visitor = getVisitor(id);
-
-      if (model.Email != visitor.Email && _context.Visitors.Any(x => x.Email == model.Email))
-        throw new AppException("O E-mail '" + model.Email + "' já está sendo utilizado.");
-
-      if (_context.Visitors.Any(x => x.Cpf == model.Cpf))
-        throw new AppException("O CPF '" + model.Cpf + "' já foi cadastrado.");
         
       _mapper.Map(model, visitor);
       _context.Visitors.Update(visitor);
@@ -66,7 +60,6 @@ namespace WebApi.Services
       _context.Visitors.Remove(visitor);
       _context.SaveChanges();
     }
-
 
     private Visitor getVisitor(int id)
     {
